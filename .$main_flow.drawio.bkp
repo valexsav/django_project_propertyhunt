@@ -92,6 +92,9 @@
         <mxCell id="6eJoWFHb4Po7UvGIYIAf-1" value="&lt;font color=&quot;#6666ff&quot;&gt;table(contract)&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="395" y="287" width="85" height="63" as="geometry" />
         </mxCell>
+        <mxCell id="6eJoWFHb4Po7UvGIYIAf-6" value="Text" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="320" width="60" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
