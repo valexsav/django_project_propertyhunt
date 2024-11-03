@@ -15,6 +15,9 @@
 
 {% for property in properties %}
     <div class="property-listing">
+        {% if property.photo %}
+            <img src="{{ property.photo.url }}" alt="{{ property.name }}" width="200">
+        {% endif %}
         <p><strong>Название:</strong> {{ property.name }}</p>
         <p><strong>Цена:</strong> {{ property.price }}</p>
         <a href="{% url 'the_property' property.id %}" class="details-link">Подробнее</a>

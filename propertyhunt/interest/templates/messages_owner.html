@@ -9,6 +9,7 @@
         <div class="property-listing">
             <p><strong>Пользователь:</strong> {{ message.user.username }}</p>
             <p><strong>Сообщение:</strong> {{ message.text }}</p>
+            <p><strong>Когда отправлено:</strong> {{ message.timestamp|date:"Y-m-d H:i:s" }}</p>
         </div>
     {% endfor %}
 {% else %}

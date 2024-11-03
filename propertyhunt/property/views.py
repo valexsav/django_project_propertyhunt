@@ -1,11 +1,7 @@
 from django.shortcuts import render, get_object_or_404,redirect
-
 from .models import Property
-
 from .forms import PropertyForm
-
 from django.contrib.auth.decorators import login_required
-
 from django.http import HttpResponseNotAllowed
 
 
@@ -64,7 +60,7 @@ def delete_property(request, property_id):
 
 def create_property_view(request):
     if request.method == 'POST':
-        form = PropertyForm(request.POST)
+        form = PropertyForm(request.POST, request.FILES)
         if form.is_valid():
             property = form.save(commit=False)
             property.owner_id = request.user.id

@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from user.views import (
     login_view,
@@ -51,3 +53,7 @@ urlpatterns = [
     path('index/property/<int:property_id>/show_interest', show_interest, name='show_interest'),
     path('index/messages/', messages_owner, name='messages_owner'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
