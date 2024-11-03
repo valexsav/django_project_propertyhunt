@@ -30,6 +30,10 @@ class Property(models.Model):
         through='Contract', 
         related_name='properties_to_buy',
         )
+    
+
+    def __str__(self):
+        return f"name:{self.name} - location:{self.location} - price:{self.price} - area:{self.area}"
 
 
 class Contract(models.Model):

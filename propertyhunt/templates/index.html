@@ -2,5 +2,20 @@
 
 {% block title %}Main page{% endblock %}
 {% block content %}
+
+<a href="{% url 'logout' %}" class="manage-button">Выход</a>
+<br><br><br>
+{% if request.user.role == "OWNER" %}
+    <a href="{% url 'my_properties' %}" class="manage-button">Список моих объявлений</a>
+    {% endif %}
+
 <h2>PropertyHunt(PH)</h2>
+
+{% for property in properties %}
+    <div class="property-listing">
+        <p><strong>Название:</strong> {{ property.name }}</p>
+        <p><strong>Цена:</strong> {{ property.price }}</p>
+        <a href="{% url 'the_property' property.id %}" class="details-link">Подробнее</a>
+    </div>
+{% endfor %}
 {% endblock %}

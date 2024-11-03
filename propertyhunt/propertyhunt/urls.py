@@ -17,7 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from user.views import login_view, logout_view, register_view, redirection, index_view
+from user.views import (
+    login_view,
+    logout_view,
+    register_view,
+    redirection,
+    )
+
+from property.views import (
+    index_view,
+    the_property_view,
+    my_properties_view,
+    edit_property_view,
+    delete_property,
+    create_property_view,
+    )
 
 
 urlpatterns = [
@@ -27,4 +41,9 @@ urlpatterns = [
     path('registration/', register_view, name='registration'),
     path('index/', index_view, name='index'),
     path('', redirection, name='redirection'),
+    path('index/property/<int:property_id>/', the_property_view, name='the_property'),
+    path('index/my_properties/', my_properties_view, name='my_properties'),
+    path('index/my_properties/edit/<int:property_id>/', edit_property_view, name='edit_property'),
+    path('index/my_properties/edit/<int:property_id>/delete/', delete_property, name='delete_property'),
+    path('index/my_properties/create', create_property_view, name='create_property'),
 ]

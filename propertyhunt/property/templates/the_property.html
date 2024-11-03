@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ property.name }}{% endblock %}
+{% block content %}
+    <h2>PropertyHunt(PH)</h2>
+    <div class="property-details">
+        <p><strong>Название:</strong> {{ property.name }}</p>
+    <p><strong>Цена:</strong> {{ property.price }}</p>
+    <p><strong>Местоположение:</strong> {{ property.location }}</p>
+    <p><strong>Area:</strong> {{ property.area }}</p>
+    <div class="property-description">
+        <h1>Описание:</h1>
+        <p>{{ property.description }}</p>
+    </div>
+    <p><strong>Владелец:</strong> {{ property.owner }}</p>
+</div>
+<div class="return-link">
+    <a href="{% url 'index' %}">Вернуться на главную</a>
+</div>
+{% endblock %}

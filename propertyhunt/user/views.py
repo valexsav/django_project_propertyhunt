@@ -5,13 +5,11 @@ from django.contrib.auth.forms import AuthenticationForm
 
 from user.forms import RegistrationForm
 
-
-def index_view(request):
-    return render(request, 'index.html') 
+from property.models import Property
 
 
 def redirection(request):
-    return redirect('index')
+    return redirect('login')
 
 
 def login_view(request):
@@ -37,7 +35,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('logout')
+    return redirect('login')
 
 
 def register_view(request):
