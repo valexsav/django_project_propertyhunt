@@ -7,6 +7,8 @@
 <br><br><br>
 {% if request.user.role == "OWNER" %}
     <a href="{% url 'my_properties' %}" class="manage-button">Список моих объявлений</a>
+    <br><br><br>
+    <a href="{% url 'messages_owner' %}" class="manage-button">Мои сообщения</a>
     {% endif %}
 
 <h2>PropertyHunt(PH)</h2>

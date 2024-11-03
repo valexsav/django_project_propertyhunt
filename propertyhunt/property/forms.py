@@ -6,3 +6,4 @@ class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = ['name', 'price', 'location', 'area']
+        

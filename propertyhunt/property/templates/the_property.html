@@ -13,7 +13,13 @@
     </div>
     <p><strong>Владелец:</strong> {{ property.owner }}</p>
 </div>
+
+{% if request.user.role == 'BUYER' %}
+    <a href="{% url 'show_interest' property.id %}" class="return-link">Откликнуться</a>
+{% endif %}
+
 <div class="return-link">
     <a href="{% url 'index' %}">Вернуться на главную</a>
 </div>
+
 {% endblock %}

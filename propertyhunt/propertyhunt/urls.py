@@ -33,6 +33,8 @@ from property.views import (
     create_property_view,
     )
 
+from interest.views import show_interest, messages_owner
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -46,4 +48,6 @@ urlpatterns = [
     path('index/my_properties/edit/<int:property_id>/', edit_property_view, name='edit_property'),
     path('index/my_properties/edit/<int:property_id>/delete/', delete_property, name='delete_property'),
     path('index/my_properties/create', create_property_view, name='create_property'),
+    path('index/property/<int:property_id>/show_interest', show_interest, name='show_interest'),
+    path('index/messages/', messages_owner, name='messages_owner'),
 ]

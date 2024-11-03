@@ -84,7 +84,7 @@ button, .btn-save, .btn-cancel, .btn-main-page, .btn-delete, .create-link {
     text-align: center;
 }
 
-.return-link a {
+.return-link, .buy-link a {
     color: #2a7ae2;
     text-decoration: none;
     font-weight: bold;

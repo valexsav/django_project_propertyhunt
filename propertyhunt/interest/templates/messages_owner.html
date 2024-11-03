@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Отклики{% endblock %}
+{% block content %}
+<h2>PropertyHunt(PH)</h2>
+
+{% if income_messages %}
+    {% for message in income_messages %}
+        <div class="property-listing">
+            <p><strong>Пользователь:</strong> {{ message.user.username }}</p>
+            <p><strong>Сообщение:</strong> {{ message.text }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Никто не оставлял вам сообщений</p>
+    <br>
+    <a href="{% url 'index' %}" class="create-link">На главную</a>
+{% endif %}
+{% endblock %}
