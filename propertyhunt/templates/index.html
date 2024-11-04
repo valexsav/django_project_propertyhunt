@@ -19,7 +19,7 @@
 </form>
 
 <form method="get">
-    <div>
+    <div>   
         <label for="min_price">Минимальная цена:</label>
         <input type="number" name="min_price" id="min_price" value="{{ request.GET.min_price|default_if_none:'' }}">
         

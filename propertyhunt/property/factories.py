@@ -1,8 +1,7 @@
-import factory
+import factory.fuzzy
 from factory import Faker
 from .models import Property
 import random
-from factory.fuzzy import FuzzyInteger
 
 
 class PropertyFactory(factory.django.DjangoModelFactory):
