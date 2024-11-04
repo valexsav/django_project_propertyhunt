@@ -1,11 +1,8 @@
 from django.shortcuts import render, redirect
-
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 
 from user.forms import RegistrationForm
-
-from property.models import Property
 
 
 def redirection(request):
@@ -13,7 +10,6 @@ def redirection(request):
 
 
 def login_view(request):
-    
     if request.user.is_authenticated:
         return redirect('index')
 

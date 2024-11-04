@@ -68,11 +68,13 @@ def my_properties_view(request):
 
 def edit_property_view(request, property_id):
     property_data = get_object_or_404(Property, id=property_id)
+
     if request.method == 'POST':
         form = PropertyForm(request.POST, instance=property_data)
         if form.is_valid():
             form.save()
             return redirect('my_properties')
+        
     elif request.method == 'GET':
         form = PropertyForm(instance=property_data)
     return render(
@@ -90,6 +92,7 @@ def delete_property(request, property_id):
         the_property = get_object_or_404(Property, id=property_id)
         the_property.delete()
         return redirect('my_properties')
+    
     else:
         return HttpResponseNotAllowed(['POST'])
     
@@ -102,6 +105,7 @@ def create_property_view(request):
             property.owner_id = request.user.id
             property.save()
             return redirect('my_properties')
+        
     elif request.method == 'GET':
         form = PropertyForm()
         return render(

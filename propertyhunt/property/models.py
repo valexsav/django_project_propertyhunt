@@ -1,9 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from PIL import Image
 
 from user.models import User
-
-from PIL import Image
 
 
 class Property(models.Model):
@@ -27,11 +26,19 @@ class Property(models.Model):
         on_delete=models.CASCADE,
         limit_choices_to={'role': 'OWNER'},
         related_name='properties_owned',
+    )    
+    
+    descriprion = models.TextField(
+        max_length=500,
+        blank=True,
+        null=True
     )
-    
-    
-    
-    photo = models.ImageField(upload_to='photos/', blank=True, null=True)
+
+    photo = models.ImageField(
+        upload_to='photos/',
+        blank=True,
+        null=True
+    )
 
     def save(self, *args, **kwargs):
         # Сначала вызываем родительский метод save, чтобы сохранить изображение
@@ -64,5 +71,10 @@ class Contract(models.Model):
         on_delete=models.CASCADE,
         related_name='signed_contracts',
     )
-    property = models.OneToOneField(Property, related_name='contract', on_delete=models.CASCADE)
+    property = models.OneToOneField(
+        Property,
+        related_name='contract',
+        on_delete=models.CASCADE
+    )
+    
     date_signed = models.DateField()

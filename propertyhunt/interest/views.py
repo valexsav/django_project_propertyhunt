@@ -18,12 +18,13 @@ def show_interest(request, property_id):
             message.property_id = property_id
             message.save()
             return redirect('the_property', property_id=property.id)
+        
     elif request.method == 'GET':
         form = MessageForm()
     return render(
         request,
         'show_interest.html',
-        {
+        context={
         'form': form,
         'property': property
         }
@@ -31,13 +32,13 @@ def show_interest(request, property_id):
 
 
 def messages_owner(request):
-
     my_properties_ids = Property.objects.filter(owner_id=request.user.id).values_list('id', flat=True)
     income_messages = Interest.objects.filter(property_id__in=my_properties_ids).select_related('user', 'property')
+
     return render(
         request,
         'messages_owner.html',
         context={
             'income_messages': income_messages
-            }
+        }
     )

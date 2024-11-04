@@ -5,7 +5,13 @@ from .models import Property
 class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
-        fields = ['name', 'price', 'location', 'area', 'photo']
+        fields = [
+            'name',
+            'price', 
+            'location',
+            'area',
+            'photo'
+        ]
 
 
 class PropertySortForm(forms.Form):
@@ -42,3 +48,4 @@ class PropertyFilterForm(forms.Form):
         required=False,
         label="Максимальная площадь"
     )
+    
