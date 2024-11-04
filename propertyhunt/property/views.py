@@ -3,39 +3,38 @@ from .models import Property
 from .forms import PropertyForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseNotAllowed
-from .forms import PropertySortForm, PropertyFilterForm
+from .forms import PropertySortAndFilterForm
 
 
 @login_required
 def index_view(request):
-    sort_form = PropertySortForm(request.GET or None)
-    filter_form = PropertyFilterForm(request.GET or None)
+    sort_and_filter_form = PropertySortAndFilterForm(request.GET or None)
     properties = Property.objects.all()
-
-    if sort_form.is_valid() and sort_form.cleaned_data:
-        sort_by = sort_form.cleaned_data.get('sort_by')
-        if sort_by:
-            properties = properties.order_by(sort_by)
-
-    if filter_form.is_valid() and filter_form.cleaned_data:
-        filters ={}
-
-        min_price = filter_form.cleaned_data.get('min_price')
+    filters ={}
+    if sort_and_filter_form.is_valid():
+        cleaned_data = sort_and_filter_form.cleaned_data
+        min_price = sort_and_filter_form.cleaned_data.get('min_price')
         if min_price:
             filters['price__gte'] = min_price
 
-        max_price = filter_form.cleaned_data.get('max_price')
+        max_price = sort_and_filter_form.cleaned_data.get('max_price')
         if max_price:
             filters['price__lte'] = max_price
 
-        min_area = filter_form.cleaned_data.get('min_area')
+        min_area = sort_and_filter_form.cleaned_data.get('min_area')
         if min_area:
             filters['area__gte'] = min_area
 
-        max_area = filter_form.cleaned_data.get('max_area')
+        max_area = sort_and_filter_form.cleaned_data.get('max_area')
         if max_area:
             filters['area__lte'] = max_area
 
+        properties = properties.filter(**filters)
+        sort_by = cleaned_data.get('sort_by')
+        if sort_by:
+            properties = properties.order_by(sort_by)
+    
+    else:
         properties = properties.filter(**filters)
     
     return render(
@@ -43,7 +42,7 @@ def index_view(request):
         'index.html',
         context={
             'properties': properties,
-            'sort_form': sort_form,
+            'sort_and_filter_form': sort_and_filter_form,
         }
     ) 
 

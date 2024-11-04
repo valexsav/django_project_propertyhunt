@@ -22,12 +22,38 @@ h1, h2, h3 {
 }
 
 /* Шапка */
-header {
-    background-color: #4a90e2;
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #f4f4f9;
+    position: relative; /* Для абсолютного позиционирования Log out */
+}
+
+/* Логотип */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4a90e2;
+}
+
+/* Ссылка Log out */
+.logout-link {
+    position: absolute;
+    right: 20px;
+    padding: 8px 15px;
+    background-color: #e91e63;
     color: #ffffff;
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-link:hover {
+    background-color: #c2185b;
 }
 
 /* Подвал */
@@ -54,7 +80,7 @@ form {
 }
 
 /* Кнопки */
-button, .btn-save, .btn-cancel, .btn-main-page, .btn-delete, .create-link {
+button, .btn-save, .btn-cancel, .btn-main-page, .btn-delete, .create-link, .main-page-lnk {
     width: 100%;
     padding: 12px;
     border: none;
@@ -166,4 +192,31 @@ button:hover, .btn-save:hover, .btn-cancel:hover, .btn-main-page:hover, .btn-del
 /* Форма удаления */
 .delete-form {
     margin-top: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column; /* Располагаем ссылки вертикально */
+    align-items: center;
+    gap: 10px; /* Расстояние между ссылками */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* Стили для каждой ссылки */
+.sidebar-link {
+    padding: 10px 15px;
+    background-color: #e91e63;
+    color: #ffffff;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    width: 120px; /* Фиксированная ширина для всех кнопок */
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-link:hover {
+    background-color: #c2185b;
 }

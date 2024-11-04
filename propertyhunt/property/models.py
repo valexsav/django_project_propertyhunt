@@ -28,7 +28,7 @@ class Property(models.Model):
         related_name='properties_owned',
     )    
     
-    descriprion = models.TextField(
+    description = models.TextField(
         max_length=500,
         blank=True,
         null=True

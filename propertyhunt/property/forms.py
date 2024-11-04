@@ -10,42 +10,48 @@ class PropertyForm(forms.ModelForm):
             'price', 
             'location',
             'area',
-            'photo'
+            'photo',
+            'description'
         ]
+        labels = {
+            'name': 'Название',
+            'price': 'Цена',
+            'location': 'Местоположение',
+            'area': 'Площадь',
+            'photo': 'Фото',
+            'description': 'Описание(не более 500 символов)',
+        }
 
 
-class PropertySortForm(forms.Form):
+class PropertySortAndFilterForm(forms.Form):
     sort_by = forms.ChoiceField(
         choices=[
-            ('', 'Выберите вариант сортировки'),
-            ('price', 'По возрастанию цены'),
-            ('-price', 'По убыванию цены'),
-            ('area', 'По возрастанию площади'),
-            ('-area', 'По убыванию площади')
+            ('', 'Sort by:'),
+            ('price', 'Price: low to high'),
+            ('-price', 'Price: high to low'),
+            ('area', 'Area: Small to Large'),
+            ('-area', 'Area: Large to Small'),
         ],
         required=False,
-        label='Сортировать по:'
+        label='Sort by:',
     )
 
-
-class PropertyFilterForm(forms.Form):
     min_price = forms.IntegerField(
         required=False,
-        label="Минимальная цена"
+        label="Min price"
     )
     
     max_price = forms.IntegerField(
         required=False,
-        label="Максимальная цена"
+        label="Max price"
     )
     
     min_area = forms.IntegerField(
         required=False,
-        label="Минимальная площадь"
+        label="Min area"
     )
     
     max_area = forms.IntegerField(
         required=False,
-        label="Максимальная площадь"
+        label="Max area"
     )
-    

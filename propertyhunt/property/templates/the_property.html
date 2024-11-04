@@ -9,9 +9,12 @@
     <p><strong>Area:</strong> {{ property.area }}</p>
     <div class="property-description">
         <h1>Описание:</h1>
-        <p>{{ property.description }}</p>
+        {% if property.description %}
+            <p>{{ property.description }}</p>
+        {% else %}
+            <p>Описание отсутствует</p>
+        {% endif %} 
     </div>
-    <p><strong>Владелец:</strong> {{ property.owner }}</p>
 </div>
 
 {% if request.user.role == 'BUYER' %}
