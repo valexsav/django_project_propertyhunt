@@ -1,3 +1,15 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import User
 
-# Register your models here.
+from property.models import Property
+
+
+class PropertyInline(admin.StackedInline):
+    model = Property
+    extra = 0
+
+
+@admin.register(User)
+class UserAdmin(UserAdmin):
+    inlines = [PropertyInline]

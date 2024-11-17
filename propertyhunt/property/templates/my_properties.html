@@ -4,21 +4,18 @@
 {% block content %}
 <h2>PropertyHunt(PH)</h2>
 
-{% if my_properties %}
-    <a href="{% url 'create_property' %}" class="create-link">Создать объявление</a>
-    <br><br><br>
-    <a href="{% url 'index' %}" class="main-page-lnk">На главную</a>
-    {% for property in my_properties %}
-        <div class="property-listing">
-            <p><strong>Название:</strong> {{ property.name }}</p>
-            <p><strong>Цена:</strong> {{ property.price }}</p>
-            <a href="{% url 'the_property' property.id %}" class="details-link">Подробнее</a>
-            <a href="{% url 'edit_property' property.id %}" class="edit-link">Редактировать</a>
-        </div>
-    {% endfor %}
-{% else %}
+<a href="{% url 'create_property' %}" class="create-link">Создать объявление</a>
+<br><br><br>
+<a href="{% url 'index' %}" class="main-page-lnk">На главную</a>
+{% for property in own_properties %}
+    <div class="property-listing">
+        <p><strong>Название:</strong> {{ property.name }}</p>
+        <p><strong>Цена:</strong> {{ property.price }}</p>
+        <a href="{% url 'the_property' property.id %}" class="details-link">Подробнее</a>
+        <a href="{% url 'edit_property' property.id %}" class="edit-link">Редактировать</a>
+    </div>
+{% endfor %}
+{% if not own_properties %}
     <p>У вас нет объявлений.</p>
-    <br>
-    <a href="{% url 'create_property' %}" class="create-link">Создать объявление</a>
 {% endif %}
 {% endblock %}

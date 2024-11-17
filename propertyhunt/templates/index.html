@@ -9,7 +9,7 @@
     <div class="sidebar">
         <a href="{% url 'logout' %}" class="sidebar-link">Log out</a>
         {% if request.user.role == "OWNER" %}
-            <a href="{% url 'my_properties' %}" class="sidebar-link">My properties</a>
+            <a href="{% url 'own_properties' %}" class="sidebar-link">My properties</a>
             <a href="{% url 'messages_owner' %}" class="sidebar-link">Messages</a>
         {% endif %}
     </div>

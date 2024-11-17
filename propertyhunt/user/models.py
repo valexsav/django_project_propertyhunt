@@ -1,18 +1,18 @@
 from django.contrib.auth.models import AbstractUser
-
 from django.db import models
 
 
 class User(AbstractUser):
-
+    OWNER = 'OWNER'
+    BUYER = 'BUYER'
     OWNER_OR_BUYER_CHOICES = [
-        ('OWNER', 'Owner'),
-        ('BUYER', 'Buyer'),
+        (OWNER, 'Owner'),
+        (BUYER, 'Buyer'),
     ]
 
     role = models.CharField(
         max_length=5,
         choices=OWNER_OR_BUYER_CHOICES,
-        default='BUYER'
+        default=BUYER,
     )
     

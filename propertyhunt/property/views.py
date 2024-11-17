@@ -47,6 +47,7 @@ def index_view(request):
     ) 
 
 
+@login_required
 def the_property_view(request, property_id):
     property = Property.objects.get(id=property_id)
     return render(
@@ -55,16 +56,17 @@ def the_property_view(request, property_id):
         context={'property': property}
     )
 
-
+@login_required
 def my_properties_view(request):
-    my_properties = Property.objects.filter(owner_id=request.user.id)
+    own_properties = Property.objects.filter(owner_id=request.user.id)
     return render(
         request,
         'my_properties.html',
-        context={'my_properties': my_properties}
+        context={'own_properties': own_properties}
     )
 
 
+@login_required
 def edit_property_view(request, property_id):
     property_data = get_object_or_404(Property, id=property_id)
 
@@ -86,6 +88,7 @@ def edit_property_view(request, property_id):
     )
 
 
+@login_required
 def delete_property(request, property_id):
     if request.method == 'POST':
         the_property = get_object_or_404(Property, id=property_id)
@@ -96,6 +99,7 @@ def delete_property(request, property_id):
         return HttpResponseNotAllowed(['POST'])
     
 
+@login_required
 def create_property_view(request):
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)

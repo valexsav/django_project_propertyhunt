@@ -1,7 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from PIL import Image
-
 from user.models import User
 
 
@@ -40,6 +39,7 @@ class Property(models.Model):
         null=True
     )
 
+
     def save(self, *args, **kwargs):
         # Сначала вызываем родительский метод save, чтобы сохранить изображение
         super().save(*args, **kwargs)
@@ -59,6 +59,11 @@ class Property(models.Model):
                 
                 # Сохраняем измененное изображение поверх исходного
                 img.save(self.photo.path)
+
+
+    @property
+    def price_with_agency_fee(self):
+        return round(self.price * 1.1)
     
 
     def __str__(self):
@@ -78,3 +83,4 @@ class Contract(models.Model):
     )
     
     date_signed = models.DateField()
+    
