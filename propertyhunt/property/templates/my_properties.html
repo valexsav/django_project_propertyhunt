@@ -7,7 +7,7 @@
 <a href="{% url 'create_property' %}" class="create-link">Создать объявление</a>
 <br><br><br>
 <a href="{% url 'index' %}" class="main-page-lnk">На главную</a>
-{% for property in own_properties %}
+{% for property in owner_properties %}
     <div class="property-listing">
         <p><strong>Название:</strong> {{ property.name }}</p>
         <p><strong>Цена:</strong> {{ property.price }}</p>
@@ -15,7 +15,7 @@
         <a href="{% url 'edit_property' property.id %}" class="edit-link">Редактировать</a>
     </div>
 {% endfor %}
-{% if not own_properties %}
+{% if not owner_properties %}
     <p>У вас нет объявлений.</p>
 {% endif %}
 {% endblock %}

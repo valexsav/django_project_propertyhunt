@@ -27,12 +27,12 @@ from user.views import (
     )
 
 from property.views import (
-    index_view,
-    the_property_view,
-    my_properties_view,
-    edit_property_view,
-    delete_property,
-    create_property_view,
+    PropertyUpdateView,
+    PropertyDeleteView,
+    PropertyCreateView,
+    PropertyListView,
+    PropertyDetailView,
+    MyPropertiesListView,
     )
 
 from interest.views import show_interest, messages_owner
@@ -43,14 +43,14 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
     path('registration/', register_view, name='registration'),
-    path('index/', index_view, name='index'),
+    path('index/', PropertyListView.as_view(), name='index'),
     path('', redirection, name='redirection'),
-    path('index/property/<int:property_id>/', the_property_view, name='the_property'),
-    path('index/my_properties/', my_properties_view, name='own_properties'),
-    path('index/my_properties/edit/<int:property_id>/', edit_property_view, name='edit_property'),
-    path('index/my_properties/edit/<int:property_id>/delete/', delete_property, name='delete_property'),
-    path('index/my_properties/create', create_property_view, name='create_property'),
-    path('index/property/<int:property_id>/show_interest', show_interest, name='show_interest'),
+    path('index/property/<int:pk>/', PropertyDetailView.as_view(), name='the_property'),
+    path('index/my_properties/', MyPropertiesListView.as_view(), name='owner_properties'),
+    path('index/my_properties/edit/<int:pk>/', PropertyUpdateView.as_view(), name='edit_property'),
+    path('index/my_properties/edit/<int:pk>/delete/', PropertyDeleteView.as_view(), name='delete_property'),
+    path('index/my_properties/create', PropertyCreateView.as_view(), name='create_property'),
+    path('index/property/<int:pk>/show_interest', show_interest, name='show_interest'),
     path('index/messages/', messages_owner, name='messages_owner'),
 ]
 

@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% block title %}{{ property.name }}{% endblock %}
+{% block title %}{{ the_property.name }}{% endblock %}
 {% block content %}
     <h2>PropertyHunt(PH)</h2>
-    <div class="property-details">
-        <p><strong>Название:</strong> {{ property.name }}</p>
-    <p><strong>Цена:</strong> {{ property.price }}</p>
-    <p><strong>Местоположение:</strong> {{ property.location }}</p>
-    <p><strong>Area:</strong> {{ property.area }}</p>
-    <div class="property-description">
+    <div class="the_property-details">
+        <p><strong>Название:</strong> {{ the_property.name }}</p>
+    <p><strong>Цена:</strong> {{ the_property.price }}</p>
+    <p><strong>Местоположение:</strong> {{ the_property.location }}</p>
+    <p><strong>Area:</strong> {{ the_property.area }}</p>
+    <div class="the_property-description">
         <h1>Описание:</h1>
-        {% if property.description %}
-            <p>{{ property.description }}</p>
+        {% if the_property.description %}
+            <p>{{ the_property.description }}</p>
         {% else %}
             <p>Описание отсутствует</p>
         {% endif %} 
@@ -18,11 +18,10 @@
 </div>
 
 {% if request.user.role == 'BUYER' %}
-    <a href="{% url 'show_interest' property.id %}" class="return-link">Откликнуться</a>
+    <a href="{% url 'show_interest' the_property.id %}" class="return-link">Откликнуться</a>
 {% endif %}
 
 <div class="return-link">
     <a href="{% url 'index' %}">Вернуться на главную</a>
 </div>
-
 {% endblock %}
