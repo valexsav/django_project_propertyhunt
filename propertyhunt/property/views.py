@@ -12,7 +12,11 @@ from django.views.generic import (
 )
 from django.urls import reverse, reverse_lazy
 
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
+
+@method_decorator(cache_page(60*15), name='dispatch')
 class PropertyListView(ListView, LoginRequiredMixin):
     model = Property
     template_name = 'index.html'
